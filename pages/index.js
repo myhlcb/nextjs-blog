@@ -1,23 +1,24 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import styles from '../styles/Home.module.css'
-
-export default function Home() {
-  const router = useRouter()
-  const gotoAbout = () => {
-    router.push('/news')
+import React from 'react'
+class Page extends React.Component {
+  constructor(props) {
+    console.log(props, 33)
+    super(props)
+	}
+  static async getInitialProps ({ req, query }) {
+    console.log(query, 1211)
+    return {
+      articles: query.list,
+      total: query.total + 1
+    }
   }
-  return (
-    <div>
-      <div>Hello Next.js!</div>
+  render () {
+    console.log(this.props, 232)
+    return (
       <div>
-        <Link href='/about'>
-          <a>关于</a>
-        </Link>
+        <div>Next stars:{this.props.total}</div>
       </div>
-      <div>
-        <button onClick={ gotoAbout}>新闻</button> 
-      </div>
-    </div>
-  )
+    )
+  }
 }
+
+export default Page

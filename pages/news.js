@@ -1,4 +1,9 @@
+import Layout from '../components/Layout'
 export default function News() {
-    return (<p>News</p>
+    return (
+        <div>
+            <Layout />
+            <p>News</p>
+        </div>
         )
 }
