@@ -1,8 +1,6 @@
 const Koa = require('koa')
 const next = require('next')
 const Router = require('koa-router')
-const { UsingJoinColumnIsNotAllowedError } = require('typeorm')
-
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -45,7 +43,6 @@ app.prepare()
       await app.render(ctx.req, ctx.res, `/view`, {id, type})
       ctx.respond = false
     })
-    // 如果没有配置nginx做静态文件服务，下面代码请务必开启
     server.use(async (ctx,next) => {
       const path = ctx.path 
       if (path.startsWith('/_next')) {
@@ -57,7 +54,6 @@ app.prepare()
       }
 
     })
-    // 防止出现控制台报404错误
     server.use(async (ctx, next) => {
       ctx.res.statusCode = 200
       await next()

@@ -5,6 +5,7 @@
   "scripts": {
     "server": "nodemon server.js",
     "app": "nodemon app.js",
+    "http": "nodemon http.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
